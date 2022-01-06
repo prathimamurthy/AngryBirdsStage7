@@ -19,6 +19,7 @@ function setup(){
     engine = Engine.create();
     world = engine.world;
 
+    getTime();
 
     ground = new Ground(600,height,1200,20);
     platform = new Ground(150, 305, 300, 170);
@@ -85,4 +86,31 @@ function keyPressed(){
     if(keyCode === 32){
        // slingshot.attach(bird.body);
     }
+}
+
+//JSON - key :value  time:10pm   date:6
+async function getTime(){
+
+
+    var response = await fetch("http://worldtimeapi.org/api/timezone/Asia/Kolkata");
+    console.log(response);
+
+    var responseJson =  await response.json();
+
+    console.log(responseJson);
+
+    var gameTime = responseJson.datetime;
+    console.log("time is " + gameTime)
+    //slice 
+
+    var gameHour = gameTime.slice(11,13);
+    console.log( gameHour);
+
+
+        //if time is between 6am and 5 pm then set day background
+        //else set night background
+
+        
+
+
 }
